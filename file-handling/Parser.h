@@ -14,7 +14,7 @@ public:
 	{
 		// name&email&password
 
-		// eventName&eventPlace&eventStartMonth&eventStartDay&eventStartHour&eventStartMinute&eventEndMonth&eventEndDay&eventEndHour&eventEndMinute&eventReminderTimeHour&evenReminderTimeMinute&eventDone&creatorId
+		// eventName & eventPlace & eventStartMonth & eventStartDay & eventStartHour & eventEndMonth & eventEndDay & eventEndHour & eventReminderTimeHour & eventDone & creatorId
 
 		stringstream s(line);
 		vector<string> info;
@@ -30,11 +30,11 @@ public:
 	{
 		vector<string> info = split(line);
 
-		DateTime startDateTime(stoi(info[2]), stoi(info[3]), stoi(info[4]), stoi(info[5]));
-		DateTime endDateTime(stoi(info[6]), stoi(info[7]), stoi(info[8]), stoi(info[9]));
-		Time reminderTime(stoi(info[10]), stoi(info[11]));
+		DateTime startDateTime(stoi(info[2]), stoi(info[3]), stoi(info[4]));
+		DateTime endDateTime(stoi(info[5]), stoi(info[6]), stoi(info[7]));
+		Time reminderTime(stoi(info[8]));
 
-		Event e(info[0], info[1], startDateTime, endDateTime, reminderTime, stoi(info[12]), stoi(info[13]));
+		Event e(info[0], info[1], startDateTime, endDateTime, reminderTime, stoi(info[9]), stoi(info[10]));
 
 		return e;
 	}
@@ -43,7 +43,7 @@ public:
 	{
 		vector<string> info = split(line);
 		User u(info[0], info[1], info[2]);
-		
+
 		return u;
 	}
 };

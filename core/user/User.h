@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -15,7 +16,8 @@ protected:
 
 public:
     User() {}
-    User(string name, string email, string password, vector<Event> events = {}) {
+    User(string name, string email, string password, vector<Event> events = {})
+    {
         idCounter++;
         this->id = idCounter;
         setName(name);
@@ -38,36 +40,42 @@ public:
     void setEvents(vector<Event> events) { this->events = events; }
 
     // extra
-    void getUserEvents() {
-        for(auto event : events) {
-            if(this->getId() == event.getCreatorId()) {
-                this->events.push_back(event);
+    void getUserEvents()
+    {
+        for (auto event : Event::events)
+        {
+            if (this->getId() == event.second.getCreatorId())
+            {
+                this->events.push_back(event.second);
             }
         }
     }
-    void displayDetails() {
+    void displayDetails()
+    {
         cout << "ID: " << this->getId() << endl;
         cout << "Name: " << this->getName() << endl;
         cout << "Email: " << this->getEmail() << endl;
     }
-    void createEvent() {
-
+    void createEvent()
+    {
     }
-    void listUserEvents() {
-
+    void listUserEvents()
+    {
+        for(auto event: this->events) {
+            event.displayDetails();
+        }
     }
-    Event* searchForEventById() {
-
+    Event *searchForEventById()
+    {
     }
-    Event* searchForEventByName() {
-
+    Event *searchForEventByName()
+    {
     }
-    void updateEvent() {
-
+    void updateEvent()
+    {
     }
-    void deleteEvent() {
-
+    void deleteEvent()
+    {
     }
+    static unordered_map<string, User> users;
 };
-
-static unordered_map<string, User> users;

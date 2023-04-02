@@ -6,19 +6,22 @@ using namespace std;
 
 class FileHelper
 {
-
 public:
   static void saveUser(User &u)
   {
     fstream file("data/users.txt", ios::app);
+
     file << u.getName() << '&' << u.getEmail() << '&' << u.getPassword() << endl;
+
     file.close();
   }
 
   static void saveEvent(Event &e)
   {
     fstream file("data/events.txt", ios::app);
-    file << e.getName() << '&' << e.getPlace() << '&' << e.getStartDateTime().getDate().getMonth() << '&' << e.getStartDateTime().getDate().getDay() << '&' << e.getStartDateTime().getTime().getHour() << '&' << e.getStartDateTime().getTime().getMinute() << '&' << e.getEndDateTime().getDate().getMonth() << '&' << e.getEndDateTime().getDate().getDay() << '&' << e.getEndDateTime().getTime().getHour() << '&' << e.getEndDateTime().getTime().getMinute() << '&' << e.getReminderTime().getHour() << '&' << e.getReminderTime().getMinute() << '&' << (int)e.getDone() << '&' << e.getCreatorId() << endl;
+
+    file << e.getName() << '&' << e.getPlace() << '&' << e.getStartDateTime().getDate().getMonth() << '&' << e.getStartDateTime().getDate().getDay() << '&' << e.getStartDateTime().getTime().getHour() << '&' << e.getEndDateTime().getDate().getMonth() << '&' << e.getEndDateTime().getDate().getDay() << '&' << e.getEndDateTime().getTime().getHour() << '&' << e.getReminderTime().getHour() << '&' << (int)e.getDone() << '&' << e.getCreatorId() << endl;
+
     file.close();
   }
 
@@ -29,7 +32,7 @@ public:
     while (getline(file, line))
     {
       User u = Parser::parseToUser(line);
-      users[u.getName()] = u;
+      User::users[u.getName()] = u;
     }
     file.close();
   }
@@ -41,19 +44,23 @@ public:
     while (getline(file, line))
     {
       Event e = Parser::parseToEvent(line);
-      events[e.getName()] = e;
+      Event::events[e.getName()] = e;
     }
     file.close();
   }
 
-  static void saveAllUsers() {
-    for( auto user : users ) {
+  static void saveAllUsers()
+  {
+    for (auto user : User::users)
+    {
       saveUser(user.second);
     }
   }
 
-  static void saveAllEvents() {
-    for( auto event : events ) {
+  static void saveAllEvents()
+  {
+    for (auto event : Event::events)
+    {
       saveEvent(event.second);
     }
   }
