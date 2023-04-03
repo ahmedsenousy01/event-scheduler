@@ -41,7 +41,7 @@ public:
     Time getReminderTime() { return this->reminderTime; }
     bool getDone() { return this->done; }
     int getCreatorId() { return this->creatorId; }
-    int getEventLength() { }
+    // int getEventLength() { }
 
     // setters
     void setName(string name)

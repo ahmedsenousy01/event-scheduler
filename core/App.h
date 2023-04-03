@@ -4,5 +4,12 @@
 class App
 {
 public:
-    
+    static void loadDataFromTextFiles()
+    {
+
+    }
+    static void startApp()
+    {
+        
+    }
 };

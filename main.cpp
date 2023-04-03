@@ -1,13 +1,17 @@
 #include <iostream>
-#include "file-handling/FileHelper.h"
+#include "core/calendar/Calendar.h"
 #include "core/event/Event.h"
 using namespace std;
 
 int main()
 {
-    Event event("name", "place", {{2, 15}, {5, 30}}, {{2, 17}, {5, 30}}, {4, 30}, false, 2001);
-    event.displayDetails();
-    FileHelper::saveEvent(event);
+    unordered_map<int, unordered_map<int, unordered_map<int, bool>>> schedule;
+    Calendar::initSchedule(schedule);
+
+    Event e("name", "place", {{12, 30}, {20}}, {{12, 30}, {23}}, 19, 0, 20001);
+    Calendar::reserveEvent(e, schedule);
+
+    Calendar::displaySchedule(schedule);
 
     return 0;
 }
