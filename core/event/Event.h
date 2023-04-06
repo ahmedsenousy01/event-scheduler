@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <unordered_map>
 #include "../../utils/date-time/DateTime.h"
 #include "../../utils/date-time/Date.h"
@@ -87,6 +88,17 @@ public:
         cout << "Done: " << this->getDone() << endl;
         cout << "Creator ID: " << this->getCreatorId() << endl;
     }
+
+    string summary() {
+        stringstream ss;
+        ss << name << ": "
+          << getStartDateTime().to_ddmmyyyy_hhmm() << " -> "
+          << getEndDateTime().to_ddmmyyyy_hhmm();
+        string res;
+        getline(ss, res);
+        return res;
+    }
+
     static unordered_map<string, Event> events;
     static unordered_map<string, Event> finishedEvents;
 };

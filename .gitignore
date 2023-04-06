@@ -1,1 +1,6 @@
 main.exe
+.vs
+x64
+CppProperties.json
+*vcxproj
+*vcxproj.*
